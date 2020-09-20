@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новый Год</title>
+    <link href="css/style.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        function fulltime() {
+            var time = new Date();
+            var newYear = new Date("January,1,2021,00:00:00");
+            var totalRemains = (newYear.getTime() - time.getTime());
+
+            if (totalRemains > 1) {
+
+                var RemainsSec = (parseInt(totalRemains / 1000));//сколько всего осталось секунд
+                var RemainsFullDays = (parseInt(RemainsSec / (24 * 60 * 60)));//осталось дней
+                var secInLastDay = RemainsSec - RemainsFullDays * 24 * 3600; //осталось секунд в неполном дне
+                var RemainsFullHours = (parseInt(secInLastDay / 3600));//осталось часов в неполном дне
+                if (RemainsFullHours < 10) { RemainsFullHours = "0" + RemainsFullHours };
+                var secInLastHour = secInLastDay - RemainsFullHours * 3600;//осталось секунд в неполном часе
+                var RemainsMinutes = (parseInt(secInLastHour / 60));//осталось минут в неполном часе
+                if (RemainsMinutes < 10) { RemainsMinutes = "0" + RemainsMinutes };
+                var lastSec = secInLastHour - RemainsMinutes * 60;//осталось секунд
+                if (lastSec < 10) { lastSec = "0" + lastSec };
+
+                document.getElementById("RemainsFullDays").innerHTML = RemainsFullDays + "д :";
+                document.getElementById("RemainsFullHours").innerHTML = RemainsFullHours + "ч :";
+                document.getElementById("RemainsMinutes").innerHTML = RemainsMinutes + "м :";
+                document.getElementById("lastSec").innerHTML = lastSec + "с ";
+                setTimeout('fulltime()', 10)
+            }
+
+            else {
+                document.getElementById("clock").innerHTML = "C НОВЫМ ГОДОМ !!!";
+            }
+        }
+
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<!-- -------------------------------------------------------------- -->
+    <div class='test'>
+        <!-- -------------------------------------------------------------- -->
+        <div class="clock">
+            <span id="clock">До нового года осталось
+                <b><span id="RemainsFullDays"></span></b>
+                <b><span id="RemainsFullHours"></span></b>
+                <b><span id="RemainsMinutes"></span></b>
+                <b><span id="lastSec"></span></b>
+            </span>
+        </div>
+        <!-- -------------------------------------------------------------- -->
+        <div class="clock">
+            <script type="text/javascript">fulltime();</script>
+        </div>
+        <!-- -------------------------------------------------------------- -->
+    </div>
+<!-- -------------------------------------------------------------- -->
+</body>
+
+
+</html>
